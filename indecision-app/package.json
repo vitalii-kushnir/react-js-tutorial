@@ -1,0 +1,17 @@
+{
+  "name": "indecision-app",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Vitalii Kushnir",
+  "license": "MIT",
+  "dependencies": {
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "1.5.2",
+    "babel-preset-react": "6.24.1",
+    "live-server": "^1.2.0"
+  },
+  "scripts": {
+    "live-server": "live-server public",
+    "babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch"
+  }
+}
