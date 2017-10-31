@@ -1,8 +1,11 @@
 import React from 'react';
+import ExpenseList from './ExpenseList';
+import ExpenseListFilters from './ExpenseListFilters';
 
-const EditExpensePage = () => (
+const EditExpensePage = (props) => (
     <div>
-        Edit
+        <ExpenseListFilters/>
+        <ExpenseList/>
     </div>
 );
 
