@@ -13,33 +13,43 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database
-    .ref()
-    .set({
-        name: "kusha",
-        age: 29,
-        location: {
-            city: 'Cologne',
-            country: 'Germany'
-        }
-    })
-    .then(() => {
-        console.log("Data is saved");
-    })
-    .catch((e) => {
-        console.log("This failed", e);
+database.ref('location/city')
+    .once('value')
+    .then((snapshot) => {
+        console.log('Data from DB', snapshot.val());
     });
 
-database.ref('age').set(23);
-database.ref('location/city').set('Kyiv');
+database.ref().on('value', (snapshot) => {
+    console.log('Data from DB', snapshot.val());
+});
 
-database.ref()
-    .update({
-        name: 'Vitalii',
-        age: null,
-        job: 'Software Developer',
-        'location/country': 'Ukraine'
-    });
+// database
+//     .ref()
+//     .set({
+//         name: "kusha",
+//         age: 29,
+//         location: {
+//             city: 'Cologne',
+//             country: 'Germany'
+//         }
+//     })
+//     .then(() => {
+//         console.log("Data is saved");
+//     })
+//     .catch((e) => {
+//         console.log("This failed", e);
+//     });
+//
+// database.ref('age').set(23);
+// database.ref('location/city').set('Kyiv');
+//
+// database.ref()
+//     .update({
+//         name: 'Vitalii',
+//         age: null,
+//         job: 'Software Developer',
+//         'location/country': 'Ukraine'
+//     });
 
 // remove data from the DB with the set() method
 // database.ref('age').set(null);
