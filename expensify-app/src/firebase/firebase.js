@@ -31,3 +31,14 @@ database
 
 database.ref('age').set(23);
 database.ref('location/city').set('Kyiv');
+
+// remove data from the DB with the set() method
+// database.ref('age').set(null);
+
+// remove data from the DB with the remove() method
+database
+    .ref('age')
+    .remove()
+    .then(() => {
+        console.log('Age was removed');
+    });
