@@ -19,7 +19,8 @@ database
         name: "kusha",
         age: 29,
         location: {
-            city: 'Cologne'
+            city: 'Cologne',
+            country: 'Germany'
         }
     })
     .then(() => {
@@ -32,13 +33,21 @@ database
 database.ref('age').set(23);
 database.ref('location/city').set('Kyiv');
 
+database.ref()
+    .update({
+        name: 'Vitalii',
+        age: null,
+        job: 'Software Developer',
+        'location/country': 'Ukraine'
+    });
+
 // remove data from the DB with the set() method
 // database.ref('age').set(null);
 
 // remove data from the DB with the remove() method
-database
-    .ref('age')
-    .remove()
-    .then(() => {
-        console.log('Age was removed');
-    });
+// database
+//     .ref('age')
+//     .remove()
+//     .then(() => {
+//         console.log('Age was removed');
+//     });
