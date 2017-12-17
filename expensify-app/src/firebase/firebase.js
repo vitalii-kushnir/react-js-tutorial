@@ -13,60 +13,56 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref('notes').push({
-    body: 'This is my note',
-    title: 'Second note'
-});
-
-database.ref('notes/-L0ZPM5MH-ioCnko5Fuc').update({
-    body: 'new body'
-});
-
-// database.ref('location/city')
+// database.ref('expenses')
 //     .once('value')
 //     .then((snapshot) => {
-//         console.log('Data from DB', snapshot.val());
-//     });
-//
-// database.ref().on('value', (snapshot) => {
-//     console.log('Data from DB', snapshot.val());
-// });
-
-// database
-//     .ref()
-//     .set({
-//         name: "kusha",
-//         age: 29,
-//         location: {
-//             city: 'Cologne',
-//             country: 'Germany'
-//         }
-//     })
-//     .then(() => {
-//         console.log("Data is saved");
-//     })
-//     .catch((e) => {
-//         console.log("This failed", e);
-//     });
-//
-// database.ref('age').set(23);
-// database.ref('location/city').set('Kyiv');
-//
-// database.ref()
-//     .update({
-//         name: 'Vitalii',
-//         age: null,
-//         job: 'Software Developer',
-//         'location/country': 'Ukraine'
+//         const expenses = [];
+//         snapshot.forEach((childSnapshot) => {
+//             expenses.push({
+//                 id: childSnapshot.key,
+//                 ...childSnapshot.val()
+//             });
+//         });
+//         console.log(expenses);
 //     });
 
-// remove data from the DB with the set() method
-// database.ref('age').set(null);
+database.ref('expenses').on('value', (snapshot) => {
+    const expenses = [];
+    snapshot.forEach((childSnapshot) => {
+        expenses.push({
+            id: childSnapshot.key,
+            ...childSnapshot.val()
+        });
+    });
+    console.log(expenses);
+});
 
-// remove data from the DB with the remove() method
-// database
-//     .ref('age')
-//     .remove()
-//     .then(() => {
-//         console.log('Age was removed');
-//     });
+// child_removed event
+database.ref('expenses').on('child_removed', (snapshot) => {
+    console.log(snapshot.key, snapshot.val());
+});
+
+// child_changed event
+database.ref('expenses').on('child_changed', (snapshot) => {
+    console.log('Child Changed', snapshot.key, snapshot.val());
+});
+
+// child_added event
+database.ref('expenses').on('child_added', (snapshot) => {
+    console.log('Child Added', snapshot.key, snapshot.val());
+});
+
+
+database.ref('expenses').push({
+    description: 'Rent',
+    note: '',
+    amount: 109500,
+    createdAt: 4534645767
+});
+
+database.ref('expenses').push({
+    description: 'Phone Bill',
+    note: '',
+    amount: 1000,
+    createdAt: 4534645799
+});
