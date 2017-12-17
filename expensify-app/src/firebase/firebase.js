@@ -13,13 +13,21 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref().set({
-    name: "kusha",
-    age: 29,
-    location: {
-        city: 'Cologne'
-    }
-});
+database
+    .ref()
+    .set({
+        name: "kusha",
+        age: 29,
+        location: {
+            city: 'Cologne'
+        }
+    })
+    .then(() => {
+        console.log("Data is saved");
+    })
+    .catch((e) => {
+        console.log("This failed", e);
+    });
 
 database.ref('age').set(23);
 database.ref('location/city').set('Kyiv');
