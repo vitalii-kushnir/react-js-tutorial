@@ -4,6 +4,7 @@ import AppRouter from './routes/AppRouter';
 import configureStore from './store/configureStore';
 import {Provider} from 'react-redux';
 import {addExpense} from './actions/expenses'
+import './firebase/firebase';
 
 import 'normalize.css/normalize.css'
 import './styles/styles.scss'
