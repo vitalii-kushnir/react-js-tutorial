@@ -10,6 +10,16 @@ const config = {
 };
 
 firebase.initializeApp(config);
-firebase.database().ref().set({
-    name: "kusha"
+
+const database = firebase.database();
+
+database.ref().set({
+    name: "kusha",
+    age: 29,
+    location: {
+        city: 'Cologne'
+    }
 });
+
+database.ref('age').set(23);
+database.ref('location/city').set('Kyiv');
