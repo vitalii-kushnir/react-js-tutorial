@@ -13,15 +13,24 @@ firebase.initializeApp(config);
 
 const database = firebase.database();
 
-database.ref('location/city')
-    .once('value')
-    .then((snapshot) => {
-        console.log('Data from DB', snapshot.val());
-    });
-
-database.ref().on('value', (snapshot) => {
-    console.log('Data from DB', snapshot.val());
+database.ref('notes').push({
+    body: 'This is my note',
+    title: 'Second note'
 });
+
+database.ref('notes/-L0ZPM5MH-ioCnko5Fuc').update({
+    body: 'new body'
+});
+
+// database.ref('location/city')
+//     .once('value')
+//     .then((snapshot) => {
+//         console.log('Data from DB', snapshot.val());
+//     });
+//
+// database.ref().on('value', (snapshot) => {
+//     console.log('Data from DB', snapshot.val());
+// });
 
 // database
 //     .ref()
