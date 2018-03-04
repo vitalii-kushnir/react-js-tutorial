@@ -29,13 +29,14 @@ export const fetchIngredientsFailed = () => {
 };
 
 export const initIngredients = () => {
-    return dispatch => {
-      axios.get('https://burger-app-d688f.firebaseio.com/ingredients.json')
-        .then(response => {
-          dispatch(setIngredients(response.data))
-        }).catch(error => {
-          dispatch(fetchIngredientsFailed())
-        }
-      );
-    }};
+  return dispatch => {
+    axios.get('https://burger-app-d688f.firebaseio.com/ingredients.json')
+      .then(response => {
+        dispatch(setIngredients(response.data))
+      }).catch(error => {
+        dispatch(fetchIngredientsFailed())
+      }
+    );
+  }
+};
 
