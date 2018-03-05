@@ -10,15 +10,14 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 import axios from '../../axios-order'
 
-
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
 
   state = {
     purchasing: false
   };
 
   componentDidMount() {
-    this.props.omInitIngredients();
+    this.props.onInitIngredients();
   }
 
   purchaseHandler = () => {
@@ -112,7 +111,7 @@ const mapDispatchToProps = dispatch => {
   return {
     onIngredientAdded: (ignName) => dispatch(actions.addIngredient(ignName)),
     onIngredientRemoved: (ignName) => dispatch(actions.removeIngredient(ignName)),
-    omInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitIngredients: () => dispatch(actions.initIngredients()),
     onInitPurchase: () => dispatch(actions.purchaseBurgerInit()),
     onSetAuthRedirectPath : (path) => dispatch(actions.setAuthRedirectPath(path))
   }
